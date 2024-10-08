@@ -19,7 +19,8 @@ class AdminSiteTests(TestCase):
 
     def test_driver_license_num_listed(self):
         """
-        Test that driver's licence number is in list_display on driver admin page
+        Test that driver's licence number is
+        in list_display on driver admin page
         :return:
         """
         url = reverse("admin:taxi_driver_changelist")

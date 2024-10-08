@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from taxi.models import Car, Manufacturer, Driver
+from taxi.models import Car, Manufacturer
 
 MANUFACTURER_URL = reverse("taxi:manufacturer-list")
 CAR_URL = reverse("taxi:car-list")
@@ -161,5 +161,3 @@ class PrivateDriverTest(TestCase):
         )
         self.assertContains(response, self.user_one.username)
         self.assertNotContains(response, self.user_two.username)
-
-

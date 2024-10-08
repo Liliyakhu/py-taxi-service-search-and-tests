@@ -2,11 +2,16 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from taxi.forms import DriverCreationForm, DriverSearchForm, CarSearchForm, ManufacturerSearchForm
+from taxi.forms import (
+    DriverCreationForm,
+    DriverSearchForm,
+    CarSearchForm,
+    ManufacturerSearchForm
+)
 
 
 class FormsTests(TestCase):
-    def test_driver_creation_form_with_license_num_first_last_name_is_valid(self):
+    def test_driver_creation_form_with_license_first_last_name_is_valid(self):
         form_data = {
             "username": "new_user",
             "password1": "user12test",
@@ -55,10 +60,17 @@ class PrivateDriverTests(TestCase):
         form_data = {
             "license_number": "JIM31314"
         }
-        self.client.post(reverse("taxi:driver-update", args=[new_user.id]), data=form_data)
+        self.client.post(reverse(
+            "taxi:driver-update",
+            args=[new_user.id]),
+            data=form_data
+        )
         updated_user = get_user_model().objects.get(id=new_user.id)
 
-        self.assertEqual(updated_user.license_number, form_data["license_number"])
+        self.assertEqual(
+            updated_user.license_number,
+            form_data["license_number"]
+        )
 
 
 class DriverSearchFormTest(TestCase):
